@@ -5,7 +5,7 @@ const user = new User({
   lastName: "Orozco",
   birthdate: new Date("1997-11-11"),
   email: "marcia.orozco@gmail.com",
-  isAdmin: true,
+  isAdmin: false,
 });
 
 const book = new Book({
