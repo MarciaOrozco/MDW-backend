@@ -1,12 +1,13 @@
-import Joi from "joi";
 import { NextFunction, Request, Response } from "express";
+import Joi from "joi";
 
-const createUserValidationSchema = Joi.object({
-  name: Joi.string().required(),
+const createUserBodyValidationSchema = Joi.object({
+  name: Joi.string().min(3).max(250).required(),
   lastName: Joi.string().required(),
+  birthDate: Joi.date().required(),
   email: Joi.string().email().required(),
-  isAdmin: Joi.boolean().default(false),
-  birthdate: Joi.date().required(),
+  password: Joi.string().required(),
+  isAdmin: Joi.boolean().optional().default(false),
 });
 
 export const createUserValidation = (
@@ -14,12 +15,13 @@ export const createUserValidation = (
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = createUserValidationSchema.validate(req.body);
-
+  const { error } = createUserBodyValidationSchema.validate(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+    return res.status(400).json({
+      message: error.details[0].message,
+      error: true,
+    });
   }
-
   next();
 };
 

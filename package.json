@@ -14,7 +14,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
-    "firebase-admin": "^12.4.0",
+    "firebase": "^11.2.0",
+    "firebase-admin": "^12.7.0",
     "joi": "^17.13.3",
     "mongoose": "^8.5.3",
     "nodemon": "^3.1.4"
