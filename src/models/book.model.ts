@@ -5,7 +5,8 @@ interface Book extends Document {
   description: string;
   author: string;
   isbn: string;
-  isActive: boolean;
+  isAvailable: boolean;
+  price: number;
   image: string;
 }
 
@@ -15,7 +16,8 @@ const BookSchema: Schema = new Schema(
     description: { type: String },
     author: { type: String },
     isbn: { type: String },
-    isActive: { type: Boolean },
+    isAvailable: { type: Boolean },
+    price: { type: Number },
     image: { type: String },
   },
   {
