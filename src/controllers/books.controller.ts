@@ -48,7 +48,8 @@ export const addBook = async (
   next: NextFunction
 ) => {
   try {
-    const { name, description, price, image, author, isbn } = req.body;
+    const { name, description, price, image, author, isbn, isAvailable } =
+      req.body;
 
     if (!name || !description || !price || !author) {
       return res.status(400).json({
@@ -65,6 +66,7 @@ export const addBook = async (
       image: image || "",
       author,
       isbn,
+      isAvailable,
     });
 
     await newBook.save();
