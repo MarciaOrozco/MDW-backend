@@ -3,14 +3,12 @@ import router from "./routes";
 import connectDB from "./database";
 import dotenv from "dotenv";
 import cors from "cors";
-import { syncDatabase } from "./syncDatabase";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
 connectDB();
-// syncDatabase();
 
 app.use(cors());
 app.use(json());

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Book, Category } from "../models";
+import { Book } from "../models";
 
 export const getBooks = async (
   req: Request,
@@ -130,30 +130,6 @@ export const deleteBook = async (
       message: "Book deleted successfully",
       error: false,
       data: deletedBook,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getBooksByCategory = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const category = await Category.findById(req.params.id).populate("books");
-    if (!category) {
-      return res.status(404).json({
-        message: "Category not found",
-        error: true,
-        data: undefined,
-      });
-    }
-    return res.status(200).json({
-      message: "Books retrieved successfully",
-      error: false,
-      data: category.books,
     });
   } catch (error) {
     next(error);
