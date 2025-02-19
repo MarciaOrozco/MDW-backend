@@ -1,4 +1,4 @@
-import express, { json, Request, Response } from "express";
+import express, { json } from "express";
 import router from "../routes";
 import connectDB from "../database";
 import dotenv from "dotenv";
@@ -28,14 +28,10 @@ app.use(
 );
 app.use(json());
 
-app.use(router);
+app.use("/api", router);
 
 app.get("/", (req, res) => {
   res.send("Backend is running.");
-});
-
-app.use((req: Request, res: Response) => {
-  res.status(404).send("Route not found");
 });
 
 app.listen(port, () => {
