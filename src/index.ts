@@ -21,12 +21,20 @@ app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
 
-const corsOptions = {
-  origin: "https://mdw-app.vercel.app",
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-};
-
-app.use(cors(corsOptions));
+const allowedOrigins = "https://mdw-app.vercel.app";
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 module.exports = app;
