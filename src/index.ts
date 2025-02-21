@@ -22,4 +22,12 @@ app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
 
+const corsOptions = {
+  origin: "https://mdw-app.vercel.app",
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+};
+
+app.use(cors(corsOptions));
+
 module.exports = app;
