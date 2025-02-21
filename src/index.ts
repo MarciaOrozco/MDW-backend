@@ -10,7 +10,6 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
-app.use(cors());
 app.use(json());
 app.use(router);
 
