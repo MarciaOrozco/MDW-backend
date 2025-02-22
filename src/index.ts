@@ -10,29 +10,10 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
-const allowedOrigins = ["https://mdw-app.vercel.app"];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
+app.use(cors());
 app.use(json());
-app.use(router);
 
-app.get("/", (req, res) => {
-  res.send("Backend funcionando! 🚀");
-});
+app.use(router);
 
 app.use((req: Request, res: Response) => {
   res.status(404).send("Route not found");
@@ -41,5 +22,3 @@ app.use((req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
-
-module.exports = app;
