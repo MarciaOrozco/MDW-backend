@@ -51,9 +51,18 @@ export const addBook = async (
     const { name, description, price, image, author, isbn, isAvailable } =
       req.body;
 
-    if (!name || !description || !price || !author) {
+    if (!name || !description || !price || !author || !isbn) {
       return res.status(400).json({
         message: "Missing required fields",
+        error: true,
+        data: undefined,
+      });
+    }
+
+    const existingBook = await Book.findOne({ isbn });
+    if (existingBook) {
+      return res.status(400).json({
+        message: "This book already exists",
         error: true,
         data: undefined,
       });

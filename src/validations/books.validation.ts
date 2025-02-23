@@ -7,7 +7,7 @@ const addBookBodyValidationSchema = Joi.object({
   author: Joi.string().required(),
   price: Joi.number().required(),
   isbn: Joi.string().required(),
-  image: Joi.string().optional(),
+  image: Joi.optional(),
   isAvailable: Joi.boolean().optional().default(false),
 });
 
